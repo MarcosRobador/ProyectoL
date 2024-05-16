@@ -21,3 +21,7 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware(['auth', 'verified']);
+
+Route::get('/ejemplo', function () {
+    return view('ejemplo');
+});
