@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ZapatillaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,10 @@ Route::get('/home', function () {
 
 Route::get('/ejemplo', function () {
     return view('ejemplo');
+});
+
+Route::resource('zapatillas', ZapatillaController::class);
+
+Route::get('/index', function () {
+    return view('index');
 });
