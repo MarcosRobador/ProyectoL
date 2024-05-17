@@ -20,7 +20,17 @@ class ZapatillaController extends Controller
 
     public function store(Request $request)
     {
-        Zapatilla::create($request->all());
+        // Validar la solicitud
+        $request->validate([
+            'nombre' => 'required|string|max:255|min:3',
+            'descripcion' => 'required|string|min:10',
+            'precio' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+        ]);
+
+        // Crear una nueva zapatilla
+        Zapatilla::create($request->only(['nombre', 'descripcion', 'precio', 'stock']));
+
         return redirect()->route('zapatillas.index');
     }
 
@@ -36,7 +46,17 @@ class ZapatillaController extends Controller
 
     public function update(Request $request, Zapatilla $zapatilla)
     {
-        $zapatilla->update($request->all());
+        // Validar la solicitud
+        $request->validate([
+            'nombre' => 'required|string|max:255|min:3',
+            'descripcion' => 'required|string|min:10',
+            'precio' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+        ]);
+
+        // Actualizar la zapatilla
+        $zapatilla->update($request->only(['nombre', 'descripcion', 'precio', 'stock']));
+
         return redirect()->route('zapatillas.index');
     }
 
