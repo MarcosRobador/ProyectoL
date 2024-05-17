@@ -27,38 +27,15 @@
                 </a>
             </div>
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="{{ route('zapatillas.index') }}">Zapatillas</a></li>
+                <li><a href="{{ route('zapatillas.create') }}">Crear</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="inicio">
-        <div class="hero">
-            <h1>Bienvenido a Mi Página Web</h1>
-            <p>Ofrecemos soluciones profesionales para tu negocio.</p>
-            <a href="#servicios" class="btn">Nuestros Servicios</a>
-        </div>
-    </section>
-
-    <section id="servicios">
-        <h2>Nuestros Servicios</h2>
-        <div class="service-container">
-            <div class="service-item">
-                <h3>Servicio 1</h3>
-                <p>Descripción del servicio 1.</p>
-            </div>
-            <div class="service-item">
-                <h3>Servicio 2</h3>
-                <p>Descripción del servicio 2.</p>
-            </div>
-            <div class="service-item">
-                <h3>Servicio 3</h3>
-                <p>Descripción del servicio 3.</p>
-            </div>
-        </div>
-    </section>
+    <div class="container">
+        @yield('content')
+    </div>
 
     </section>
 

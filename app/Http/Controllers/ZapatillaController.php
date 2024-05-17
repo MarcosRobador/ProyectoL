@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Zapatilla;
+use Illuminate\Support\Facades\Storage;
 
 class ZapatillaController extends Controller
 {
@@ -26,10 +27,16 @@ class ZapatillaController extends Controller
             'descripcion' => 'required|string|min:10',
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Imagen obligatoria
         ]);
 
-        // Crear una nueva zapatilla
-        Zapatilla::create($request->only(['nombre', 'descripcion', 'precio', 'stock']));
+        // Almacenar la imagen
+        $data = $request->only(['nombre', 'descripcion', 'precio', 'stock']);
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('zapatillas', 'public');
+        }
+
+        Zapatilla::create($data);
 
         return redirect()->route('zapatillas.index');
     }
@@ -52,16 +59,28 @@ class ZapatillaController extends Controller
             'descripcion' => 'required|string|min:10',
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Imagen obligatoria
         ]);
 
-        // Actualizar la zapatilla
-        $zapatilla->update($request->only(['nombre', 'descripcion', 'precio', 'stock']));
+        // Almacenar la imagen
+        $data = $request->only(['nombre', 'descripcion', 'precio', 'stock']);
+        if ($request->hasFile('image')) {
+            if ($zapatilla->image) {
+                Storage::delete('public/' . $zapatilla->image);
+            }
+            $data['image'] = $request->file('image')->store('zapatillas', 'public');
+        }
+
+        $zapatilla->update($data);
 
         return redirect()->route('zapatillas.index');
     }
 
     public function destroy(Zapatilla $zapatilla)
     {
+        if ($zapatilla->image) {
+            Storage::delete('public/' . $zapatilla->image);
+        }
         $zapatilla->delete();
         return redirect()->route('zapatillas.index');
     }

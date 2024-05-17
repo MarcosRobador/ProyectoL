@@ -9,11 +9,11 @@ class Zapatilla extends Model
 {
     use HasFactory;
 
-    // Define los atributos que pueden ser asignados masivamente
     protected $fillable = [
         'nombre',
         'descripcion',
         'precio',
         'stock',
+        'image', 
     ];
 }
