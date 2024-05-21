@@ -23,12 +23,18 @@ Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware(['auth', 'verified']);
 
-Route::get('/ejemplo', function () {
-    return view('ejemplo');
-});
-
 Route::resource('zapatillas', ZapatillaController::class);
 
 Route::get('/index', function () {
     return view('index');
 });
+
+
+Route::get('/zapatillas', [ZapatillaController::class, 'index'])
+    ->name('zapatillas.index')
+    ->middleware('role:admin');
+
+Route::get('/ejemplo', function () {
+    return view('ejemplo');
+})->name('ejemplo');
+

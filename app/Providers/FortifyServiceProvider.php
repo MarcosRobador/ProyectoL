@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use App\Http\Responses\LoginResponse; // Importar la clase LoginResponse
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -20,7 +21,11 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Registrar la respuesta personalizada de login
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\LoginResponse::class,
+            LoginResponse::class
+        );
     }
 
     /**
@@ -43,25 +48,24 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        Fortify::loginView(function(){
+        Fortify::loginView(function () {
             return view('auth.login');
         });
-        
-        Fortify::registerView(function(){
+
+        Fortify::registerView(function () {
             return view('auth.register');
         });
 
-        Fortify::requestPasswordResetLinkView(function(){
+        Fortify::requestPasswordResetLinkView(function () {
             return view('auth.forgot-password');
         });
 
-        Fortify::resetPasswordView(function($request){
-            return view('auth.reset-password',['request'=> $request]);
+        Fortify::resetPasswordView(function ($request) {
+            return view('auth.reset-password', ['request'=> $request]);
         });
 
-        Fortify::verifyEmailView(function(){
+        Fortify::verifyEmailView(function () {
             return view('auth.verify-email');
         });
-        
     }
 }
