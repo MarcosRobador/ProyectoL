@@ -11,12 +11,12 @@ class ZapatillaController extends Controller
     public function index()
     {
         $zapatillas = Zapatilla::all();
-        return view('zapatillas.index', compact('zapatillas'));
+        return view('admin.zapatillas.index', compact('zapatillas'));
     }
 
     public function create()
     {
-        return view('zapatillas.create');
+        return view('admin.zapatillas.create');
     }
 
     public function store(Request $request)
@@ -43,12 +43,12 @@ class ZapatillaController extends Controller
 
     public function show(Zapatilla $zapatilla)
     {
-        return view('zapatillas.show', compact('zapatilla'));
+        return view('admin.zapatillas.show', compact('zapatilla'));
     }
 
     public function edit(Zapatilla $zapatilla)
     {
-        return view('zapatillas.edit', compact('zapatilla'));
+        return view('admin.zapatillas.edit', compact('zapatilla'));
     }
 
     public function update(Request $request, Zapatilla $zapatilla)

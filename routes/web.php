@@ -23,7 +23,10 @@ Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware(['auth', 'verified']);
 
-Route::resource('zapatillas', ZapatillaController::class);
+
+Route::prefix('admin')->group(function () {
+    Route::resource('zapatillas', ZapatillaController::class);
+});
 
 Route::get('/index', function () {
     return view('index');
