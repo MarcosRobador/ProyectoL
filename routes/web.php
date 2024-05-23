@@ -41,3 +41,5 @@ Route::get('/ejemplo', function () {
     return view('ejemplo');
 })->name('ejemplo');
 
+
+Route::get('/', [ZapatillaController::class, 'index'])->name('home');

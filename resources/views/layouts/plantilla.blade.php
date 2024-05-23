@@ -27,8 +27,11 @@
                 </a>
             </div>
             <ul>
-                <li><a href="{{ route('zapatillas.index') }}">Zapatillas</a></li>
-                <li><a href="{{ route('zapatillas.create') }}">Crear</a></li>
+                @if (auth()->check() && auth()->user()->hasRole('admin'))
+                    <li><a href="{{ route('zapatillas.index') }}">Zapatillas</a></li>
+                    <li><a href="{{ route('zapatillas.create') }}">Crear</a></li>
+                @endif
+                @yield('contentHeader')
             </ul>
         </nav>
     </header>
@@ -36,8 +39,6 @@
     <div class="container">
         @yield('content')
     </div>
-
-    </section>
 
     <footer>
         <p>&copy; 2024 Mi Empresa. Todos los derechos reservados.</p>
