@@ -31,28 +31,40 @@
                         @if (auth()->check())
                             @if (auth()->user()->hasRole('admin'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('zapatillas.index') }}">Zapatillas</a>
+                                    <a class="nav-link" href="{{ route('zapatillas.index') }}">
+                                        <i class="fas fa-shoe-prints"></i> Zapatillas
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('zapatillas.create') }}">Crear</a>
+                                    <a class="nav-link" href="{{ route('zapatillas.create') }}">
+                                        <i class="fas fa-plus-circle"></i> Crear
+                                    </a>
                                 </li>
                             @endif
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-danger text-white" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <i class="fas fa-sign-out-alt"></i> Logout
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user"></i>{{ auth()->user()->name }}
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                </ul>
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Log in</a>
+                                <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Registrar</a>
                                 </li>
                             @endif
                         @endif
@@ -70,6 +82,6 @@
         <p>&copy; 2024 Mi Empresa. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-sInkw3tQbJfKSOE2JToIkvbnSaQNJ5/ohcYb/sUpK5CW5qR9vvhd96lOAfA7wErf" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
