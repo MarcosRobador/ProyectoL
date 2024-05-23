@@ -42,3 +42,9 @@ Route::get('/ejemplo', function () {
 })->name('ejemplo');
 
 
+Route::get('/', [ZapatillaController::class, 'welcome'])->name('welcome');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect()->route('welcome');
+})->name('logout');

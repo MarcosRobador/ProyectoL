@@ -27,9 +27,20 @@
                 </a>
             </div>
             <ul>
-                @if (auth()->check() && auth()->user()->hasRole('admin'))
-                    <li><a href="{{ route('zapatillas.index') }}">Zapatillas</a></li>
-                    <li><a href="{{ route('zapatillas.create') }}">Crear</a></li>
+                @if (auth()->check())
+                    @if (auth()->user()->hasRole('admin'))
+                        <li><a href="{{ route('zapatillas.index') }}">Zapatillas</a></li>
+                        <li><a href="{{ route('zapatillas.create') }}">Crear</a></li>
+                    @endif
+                    <li>
+                        <a href="{{ route('logout') }}" class="btn btn-danger"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                           Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
                 @endif
                 @yield('contentHeader')
             </ul>
@@ -43,6 +54,5 @@
     <footer>
         <p>&copy; 2024 Mi Empresa. Todos los derechos reservados.</p>
     </footer>
-
 </body>
 </html>
