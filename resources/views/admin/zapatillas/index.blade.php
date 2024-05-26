@@ -4,7 +4,9 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="mb-4">Zapatillas</h1>
-            <a href="{{ route('zapatillas.create') }}" class="btn btn-primary mb-4">Agregar Zapatilla</a>
+            <a href="{{ route('zapatillas.create') }}" class="btn btn-info mb-4">
+                <i class="fas fa-plus-circle"></i>
+                Agregar Zapatilla</a>
         </div>
     </div>
     <div class="row">
@@ -17,7 +19,9 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $zapatilla->nombre }}</h5>
                         <p class="card-text">{{ $zapatilla->descripcion }}</p>
-                        <a href="{{ route('zapatillas.show', $zapatilla->id) }}" class="btn btn-info">Ver Detalles</a>
+                        <a href="{{ route('zapatillas.show', $zapatilla->id) }}" class="btn btn-outline-info">Ver Detalles
+                            <i class="fas fa-info-circle"></i>
+                        </a>
                     </div>
                 </div>
             </div>
