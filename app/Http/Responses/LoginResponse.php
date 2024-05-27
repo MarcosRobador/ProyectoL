@@ -20,9 +20,9 @@ class LoginResponse implements LoginResponseContract
         
         // Redirigir según el rol del usuario
         if ($user->roles->contains('name', 'admin')) {
-            return redirect()->route('zapatillas.index');
+            return redirect()->route('admin.zapatillas.index');
         } else {
-            return redirect()->route('ejemplo');
+            return redirect()->route('user.zapatillas.index');
         }
     }
 }

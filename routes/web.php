@@ -35,13 +35,13 @@ Route::get('/index', function () {
 });
 
 
-Route::get('/zapatillas', [ZapatillaController::class, 'index'])
-    ->name('zapatillas.index')
+Route::get('/zapatillasAdmin', [ZapatillaController::class, 'index'])
+    ->name('admin.zapatillas.index')
     ->middleware('role:admin');
 
-Route::get('/ejemplo', function () {
-    return view('ejemplo');
-})->name('ejemplo');
+Route::get('/zapatillasUser', function () {
+    return view('user.zapatillas.index');
+})->name('user.zapatillas.index');
 
 
 Route::get('/', [ZapatillaController::class, 'welcome'])->name('welcome');
