@@ -49,3 +49,6 @@ Route::post('/logout', function () {
     Auth::logout();
     return redirect()->route('welcome');
 })->name('logout');
+
+Route::get('/zapatillasUser/{id}', [ZapatillaController::class, 'showUser'])
+    ->name('user.zapatillas.show');

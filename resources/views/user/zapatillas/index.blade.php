@@ -10,8 +10,8 @@
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $zapatilla->nombre }}</h5>
-                        <p class="card-text">{{ $zapatilla->descripcion }}</p>
-                        <a href="{{ route('zapatillas.show', $zapatilla->id) }}" class="btn btn-outline-info">
+                        <p class="card-text"><strong>Precio:</strong> ${{ $zapatilla->precio }}</p>
+                        <a href="{{ route('user.zapatillas.show', $zapatilla->id) }}" class="btn btn-outline-info">
                             Ver más <i class="fas fa-info-circle"></i>
                         </a>
                     </div>

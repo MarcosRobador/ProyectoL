@@ -15,11 +15,15 @@ class ZapatillaController extends Controller
         return view('welcome', compact('zapatillas'));
     }
     public function userIndex()
-{
-    $zapatillas = Zapatilla::all();
-    return view('user.zapatillas.index', compact('zapatillas'));
-}
-
+    {
+        $zapatillas = Zapatilla::all();
+        return view('user.zapatillas.index', compact('zapatillas'));
+    }
+    public function showUser($id)
+    {
+        $zapatilla = Zapatilla::findOrFail($id);
+        return view('user.zapatillas.showUser', compact('zapatilla'));
+    }
     public function index()
     {
         $zapatillas = Zapatilla::all();
