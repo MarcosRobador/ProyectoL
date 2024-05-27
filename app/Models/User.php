@@ -52,4 +52,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->roles()->where('name', $role)->exists();
     }
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
 }

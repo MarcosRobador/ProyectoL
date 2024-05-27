@@ -1,6 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('content')
+
     <div class="row">
         @foreach ($zapatillas as $zapatilla)
             <div class="col-md-4 mb-4">
@@ -10,10 +11,16 @@
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $zapatilla->nombre }}</h5>
-                        <p class="card-text"><strong>Precio:</strong> ${{ $zapatilla->precio }}</p>
+                        <p class="card-text">{{ $zapatilla->descripcion }}</p>
                         <a href="{{ route('user.zapatillas.show', $zapatilla->id) }}" class="btn btn-outline-info">
                             Ver más <i class="fas fa-info-circle"></i>
                         </a>
+                        <form action="{{ route('cart.add', $zapatilla->id) }}" method="POST" class="mt-2">
+                            @csrf
+                            <button type="submit" class="btn btn-success">
+                                Añadir al Carrito <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
