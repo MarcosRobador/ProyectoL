@@ -8,10 +8,16 @@ use Illuminate\Support\Facades\Storage;
 
 class ZapatillaController extends Controller
 {
+
     public function welcome()
+    {
+        $zapatillas = Zapatilla::all();
+        return view('welcome', compact('zapatillas'));
+    }
+    public function userIndex()
 {
     $zapatillas = Zapatilla::all();
-    return view('welcome', compact('zapatillas'));
+    return view('user.zapatillas.index', compact('zapatillas'));
 }
 
     public function index()

@@ -39,9 +39,8 @@ Route::get('/zapatillasAdmin', [ZapatillaController::class, 'index'])
     ->name('admin.zapatillas.index')
     ->middleware('role:admin');
 
-Route::get('/zapatillasUser', function () {
-    return view('user.zapatillas.index');
-})->name('user.zapatillas.index');
+Route::get('/zapatillasUser', [ZapatillaController::class, 'userIndex'])
+    ->name('user.zapatillas.index');
 
 
 Route::get('/', [ZapatillaController::class, 'welcome'])->name('welcome');

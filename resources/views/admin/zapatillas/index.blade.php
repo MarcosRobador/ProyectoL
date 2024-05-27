@@ -18,7 +18,6 @@
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $zapatilla->nombre }}</h5>
-                        <p class="card-text">{{ $zapatilla->descripcion }}</p>
                         <a href="{{ route('zapatillas.show', $zapatilla->id) }}" class="btn btn-outline-info">Edición
                             <i class="fas fa-info-circle"></i>
                         </a>
