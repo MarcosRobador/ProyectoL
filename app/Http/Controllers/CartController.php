@@ -58,4 +58,3 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Carrito vaciado!');
     }
 }
-
