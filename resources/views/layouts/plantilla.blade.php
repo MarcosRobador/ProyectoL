@@ -29,29 +29,31 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         @if (auth()->check())
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="cartDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-shopping-cart"></i> Carrito
-                                    <span class="badge bg-success">{{ auth()->user()->cart ? auth()->user()->cart->items->count() : 0 }}</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown">
-                                    @if(auth()->user()->cart && auth()->user()->cart->items->count() > 0)
-                                        @foreach(auth()->user()->cart->items as $item)
-                                            <li class="dropdown-item">
-                                                <img src="{{ asset('storage/' . $item->zapatilla->image) }}" width="30" height="30" alt="{{ $item->zapatilla->nombre }}">
-                                                {{ $item->zapatilla->nombre }} - {{ $item->quantity }} x ${{ $item->zapatilla->precio }}
+                            @if (!auth()->user()->hasRole('admin'))
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="cartDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-shopping-cart"></i> Carrito
+                                        <span class="badge bg-success">{{ auth()->user()->cart ? auth()->user()->cart->items->count() : 0 }}</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown">
+                                        @if(auth()->user()->cart && auth()->user()->cart->items->count() > 0)
+                                            @foreach(auth()->user()->cart->items as $item)
+                                                <li class="dropdown-item">
+                                                    <img src="{{ asset('storage/' . $item->zapatilla->image) }}" width="30" height="30" alt="{{ $item->zapatilla->nombre }}">
+                                                    {{ $item->zapatilla->nombre }} - {{ $item->quantity }} x ${{ $item->zapatilla->precio }}
+                                                </li>
+                                            @endforeach
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li class="dropdown-item text-end">
+                                                <a href="{{ route('cart.index') }}" class="btn btn-primary btn-sm">Ver Carrito</a>
                                             </li>
-                                        @endforeach
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li class="dropdown-item text-end">
-                                            <a href="{{ route('cart.index') }}" class="btn btn-primary btn-sm">Ver Carrito</a>
-                                        </li>
-                                    @else
-                                        <li class="dropdown-item text-center">El carrito está vacío.</li>
-                                    @endif
-                                </ul>
-                            </li>
+                                        @else
+                                            <li class="dropdown-item text-center">El carrito está vacío.</li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
