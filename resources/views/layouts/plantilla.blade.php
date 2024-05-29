@@ -31,6 +31,11 @@
                     <ul class="navbar-nav ms-auto">
                         @if (auth()->check())
                             @if (!auth()->user()->hasRole('admin'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.zapatillas.index') }}">
+                                    <i class="fas fa-home"></i> Inicio
+                                </a>
+                            </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="cartDropdown" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,7 +52,7 @@
                                             @endforeach
                                             <li><hr class="dropdown-divider"></li>
                                             <li class="dropdown-item text-end">
-                                                <a href="{{ route('cart.index') }}" class="btn btn-primary btn-sm">Ver Carrito</a>
+                                                <a href="{{ route('cart.index') }}" class="btn btn-success btn-sm fw-bold">Ver Carrito</a>
                                             </li>
                                         @else
                                             <li class="dropdown-item text-center">El carrito está vacío.</li>
