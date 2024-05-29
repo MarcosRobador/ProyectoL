@@ -20,7 +20,7 @@ class CartController extends Controller
     {
         $zapatilla = Zapatilla::findOrFail($id);
         $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
-
+    
         $cartItem = $cart->items()->where('zapatilla_id', $id)->first();
         if ($cartItem) {
             $cartItem->quantity += 1;
@@ -31,9 +31,20 @@ class CartController extends Controller
                 'quantity' => 1,
             ]);
         }
-
+    
+        if ($request->ajax()) {
+            $cartItems = $cart->items()->with('zapatilla')->get();
+            return response()->json([
+                'success' => 'Zapatilla añadida al carrito!',
+                'cartItems' => $cartItems
+            ]);
+        }
+    
         return redirect()->route('cart.index')->with('success', 'Zapatilla añadida al carrito!');
     }
+    
+
+    
 
     public function remove(Request $request, $id)
     {
