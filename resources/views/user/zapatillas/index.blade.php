@@ -11,7 +11,7 @@
                 @endif
                 <div class="card-body">
                     <h5 class="card-title">{{ $zapatilla->nombre }}</h5>
-                    <p class="card-text">{{ $zapatilla->descripcion }}</p>
+                    <p class="card-text">{{ $zapatilla->precio}}$</p>
                     <div class="d-flex justify-content-between">
                         <a href="{{ route('user.zapatillas.show', $zapatilla->id) }}" class="btn btn-outline-info me-2">
                             <i class="fas fa-info-circle"></i>
