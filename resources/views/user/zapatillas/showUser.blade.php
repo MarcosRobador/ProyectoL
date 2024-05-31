@@ -15,6 +15,12 @@
                     <p class="card-text"><strong>Descripción: </strong>{{ $zapatilla->descripcion }}</p>
                     <p class="card-text"><strong>Precio:</strong> ${{ $zapatilla->precio }}</p>
                     <p class="card-text"><strong>Stock:</strong> {{ $zapatilla->stock }}</p>
+                    <form action="{{ route('cart.add', $zapatilla->id) }}" method="POST" class="mt-2 add-to-cart-form" id="add-to-cart-form-{{ $zapatilla->id }}">
+                        @csrf
+                        <button type="button" class="btn btn-outline-success add-to-cart-button" data-id="{{ $zapatilla->id }}">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

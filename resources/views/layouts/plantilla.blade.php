@@ -136,7 +136,7 @@
                         });
 
                         cartDropdown.append('<li><hr class="dropdown-divider"></li>');
-                        cartDropdown.append('<li class="dropdown-item text-end"><a href="{{ route('cart.index') }}" class="btn btn-primary btn-sm">Ver Carrito</a></li>');
+                        cartDropdown.append('<li class="dropdown-item text-end"><a href="{{ route('cart.index') }}" class="btn btn-primary btn-sm fw-bold">Ver Carrito</a></li>');
                     } else {
                         cartDropdown.append('<li class="dropdown-item text-center">El carrito está vacío.</li>');
                     }
@@ -148,7 +148,5 @@
         });
     });
 </script>
-
-
 
 </html>

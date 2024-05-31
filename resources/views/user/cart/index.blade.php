@@ -21,13 +21,18 @@
             </thead>
             <tbody>
                 @if($cart && $cart->items->count() > 0)
+                    @php $total = 0; @endphp
                     @foreach($cart->items as $item)
+                        @php
+                            $subtotal = $item->zapatilla->precio * $item->quantity;
+                            $total += $subtotal;
+                        @endphp
                         <tr>
                             <td><img src="{{ asset('storage/' . $item->zapatilla->image) }}" width="50" height="50" alt="{{ $item->zapatilla->nombre }}"></td>
                             <td>{{ $item->zapatilla->nombre }}</td>
                             <td>${{ $item->zapatilla->precio }}</td>
                             <td>{{ $item->quantity }}</td>
-                            <td>${{ $item->zapatilla->precio * $item->quantity }}</td>
+                            <td>${{ $subtotal }}</td>
                             <td>
                                 <form action="{{ route('cart.remove', $item->zapatilla_id) }}" method="POST">
                                     @csrf
@@ -36,6 +41,11 @@
                             </td>
                         </tr>
                     @endforeach
+                    <tr>
+                        <td colspan="4" class="text-end"><strong>Total:</strong></td>
+                        <td><strong>${{ $total }}</strong></td>
+                        <td></td>
+                    </tr>
                 @else
                     <tr>
                         <td colspan="6" class="text-center">El carrito está vacío.</td>
