@@ -62,3 +62,4 @@ Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear')
 
 Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');

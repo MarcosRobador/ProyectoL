@@ -15,6 +15,7 @@
                     <th>Total</th>
                     <th>Fecha</th>
                     <th>Fecha Estimada de Llegada</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,9 @@
                         <td>${{ $order->total }}</td>
                         <td>{{ $order->created_at }}</td>
                         <td>{{ \Carbon\Carbon::parse($order->created_at)->addDays(10)->format('d-m-Y') }}</td>
+                        <td>
+                            <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">Ver Pedido</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
