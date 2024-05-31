@@ -31,11 +31,16 @@
                     <ul class="navbar-nav ms-auto">
                         @if (auth()->check())
                             @if (!auth()->user()->hasRole('admin'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.zapatillas.index') }}">
-                                    <i class="fas fa-home"></i> Inicio
-                                </a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.zapatillas.index') }}">
+                                        <i class="fas fa-home"></i> Inicio
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('orders.index') }}">
+                                        <i class="fas fa-box"></i> Ver Pedidos
+                                    </a>
+                                </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="cartDropdown" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -91,8 +96,7 @@
                 </div>
             </div>
         </nav>
-    </header>
-    
+    </header>    
 
     <div class="container mt-4">
         @yield('content')
