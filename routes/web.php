@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ZapatillaController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CartController;
-
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -59,3 +59,6 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middl
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add')->middleware('auth');
 Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove')->middleware('auth');
 Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear')->middleware('auth');
+
+Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');

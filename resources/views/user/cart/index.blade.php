@@ -8,6 +8,11 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>
@@ -53,6 +58,12 @@
                 @endif
             </tbody>
         </table>
+        @if($cart && $cart->items->count() > 0)
+            <form action="{{ route('cart.checkout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-primary">Comprar</button>
+            </form>
+        @endif
         <form action="{{ route('cart.clear') }}" method="POST">
             @csrf
             <button type="submit" class="btn btn-warning">Vaciar Carrito</button>

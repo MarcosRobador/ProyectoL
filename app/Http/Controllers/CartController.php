@@ -7,6 +7,8 @@ use App\Models\CartItem;
 use App\Models\Zapatilla;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
+use App\Models\OrderItem;
 
 class CartController extends Controller
 {
@@ -67,5 +69,34 @@ class CartController extends Controller
         }
 
         return redirect()->route('cart.index')->with('success', 'Carrito vaciado!');
+    }
+
+    public function checkout()
+    {
+        $cart = Cart::where('user_id', Auth::id())->with('items.zapatilla')->first();
+        if (!$cart || $cart->items->isEmpty()) {
+            return redirect()->route('cart.index')->with('error', 'El carrito está vacío.');
+        }
+
+        $order = Order::create([
+            'user_id' => Auth::id(),
+            'total' => $cart->items->sum(function ($item) {
+                return $item->quantity * $item->zapatilla->precio;
+            }),
+        ]);
+
+        foreach ($cart->items as $item) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'zapatilla_id' => $item->zapatilla_id,
+                'quantity' => $item->quantity,
+                'price' => $item->zapatilla->precio,
+            ]);
+        }
+
+        $cart->items()->delete();
+        $cart->delete();
+
+        return redirect()->route('orders.index')->with('success', 'Pedido realizado con éxito.');
     }
 }
