@@ -1,6 +1,11 @@
 @extends('layouts.plantilla')
 
 @section('content')
+
+    <a class="nav-link" href="{{ route('orders.index') }}">
+            <i class="fas fa-arrow-left fa-2x"></i>
+    </a>
+
     <div class="container mt-4">
         <h1>Detalle del Pedido #{{ $order->id }}</h1>
         <div class="card mb-4">
@@ -37,6 +42,5 @@
                 </table>
             </div>
         </div>
-        <a href="{{ route('orders.index') }}" class="btn btn-primary mt-4">Volver a Mis Pedidos</a>
     </div>
 @endsection

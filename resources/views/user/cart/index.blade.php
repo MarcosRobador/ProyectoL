@@ -41,7 +41,9 @@
                             <td>
                                 <form action="{{ route('cart.remove', $item->zapatilla_id) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -61,12 +63,16 @@
         @if($cart && $cart->items->count() > 0)
             <form action="{{ route('cart.checkout') }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-primary">Comprar</button>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-shopping-cart"></i> Comprar
+                </button>
             </form>
         @endif
         <form action="{{ route('cart.clear') }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-warning">Vaciar Carrito</button>
+            <button type="submit" class="btn btn-warning mt-4">
+                <i class="fas fa-trash-alt"></i> Vaciar
+            </button>
         </form>
     </div>
 @endsection

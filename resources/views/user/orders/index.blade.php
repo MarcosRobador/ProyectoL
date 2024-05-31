@@ -26,7 +26,9 @@
                         <td>{{ $order->created_at }}</td>
                         <td>{{ \Carbon\Carbon::parse($order->created_at)->addDays(10)->format('d-m-Y') }}</td>
                         <td>
-                            <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">Ver Pedido</a>
+                            <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">
+                                <i class="fas fa-eye"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach
