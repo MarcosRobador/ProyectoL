@@ -3,7 +3,7 @@
 @section('content')
 
     <a class="nav-link" href="{{ route('orders.index') }}">
-            <i class="fas fa-arrow-left fa-2x"></i>
+        <i class="fas fa-arrow-left fa-2x"></i>
     </a>
 
     <div class="container mt-4">
@@ -42,5 +42,11 @@
                 </table>
             </div>
         </div>
+        <form action="{{ route('orders.cancel', $order->id) }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger mt-4">
+                <i class="fas fa-times-circle"></i> Cancelar Pedido
+            </button>
+        </form>
     </div>
 @endsection

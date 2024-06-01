@@ -8,6 +8,11 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>
@@ -29,6 +34,12 @@
                             <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">
                                 <i class="fas fa-eye"></i>
                             </a>
+                            <form action="{{ route('orders.cancel', $order->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
