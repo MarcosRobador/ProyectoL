@@ -13,37 +13,43 @@
                 {{ session('error') }}
             </div>
         @endif
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID Pedido</th>
-                    <th>Total</th>
-                    <th>Fecha</th>
-                    <th>Fecha Estimada de Llegada</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($orders as $order)
+        @if($orders->isEmpty())
+            <div class="alert alert-info">
+                No tienes pedidos en este momento.
+            </div>
+        @else
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>{{ $order->id }}</td>
-                        <td>${{ $order->total }}</td>
-                        <td>{{ $order->created_at }}</td>
-                        <td>{{ \Carbon\Carbon::parse($order->created_at)->addDays(10)->format('d-m-Y') }}</td>
-                        <td>
-                            <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <form action="{{ route('orders.cancel', $order->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-times-circle"></i>
-                                </button>
-                            </form>
-                        </td>
+                        <th>ID Pedido</th>
+                        <th>Total</th>
+                        <th>Fecha</th>
+                        <th>Fecha Estimada de Llegada</th>
+                        <th>Acciones</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach($orders as $order)
+                        <tr>
+                            <td>{{ $order->id }}</td>
+                            <td>${{ $order->total }}</td>
+                            <td>{{ $order->created_at }}</td>
+                            <td>{{ \Carbon\Carbon::parse($order->created_at)->addDays(10)->format('d-m-Y') }}</td>
+                            <td>
+                                <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <form action="{{ route('orders.cancel', $order->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-times-circle"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
     </div>
 @endsection
