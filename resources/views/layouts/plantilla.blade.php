@@ -126,7 +126,6 @@
                 method: 'POST',
                 data: form.serialize(),
                 success: function(response) {
-                    alert('Producto añadido al carrito correctamente.');
 
                     // Actualiza el contador de artículos en el carrito
                     var cartCount = response.cartItems.length;
