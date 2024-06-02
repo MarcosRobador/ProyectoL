@@ -5,6 +5,8 @@ use App\Http\Controllers\ZapatillaController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
+
 
 
 /*
@@ -64,3 +66,7 @@ Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checko
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 Route::post('/orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
+
+
+Route::get('/profile', [UserController::class, 'edit'])->name('profile.edit');
+Route::post('/profile', [UserController::class, 'update'])->name('profile.update');
