@@ -1,11 +1,16 @@
 @import 'bootstrap/scss/bootstrap';
 
-/* Estilos generales */
+html, body {
+    height: 100%;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
 }
 
 .navbar-brand img {
@@ -25,4 +30,3 @@ footer {
     height: 200px;
     object-fit: contain; 
 }
-
