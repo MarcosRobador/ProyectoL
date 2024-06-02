@@ -30,13 +30,13 @@
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
                 <input type="password" class="form-control" id="password" name="password">
-                <small class="form-text text-muted">Deja este campo vacío si no deseas cambiar la contraseña.</small>
+                <small class="form-text text-muted">(Deja este campo vacío si no deseas cambiar la contraseña.)</small>
             </div>
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
             </div>
-            <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
+            <button type="submit" class="btn btn-success">Actualizar Perfil</button>
         </form>
     </div>
 @endsection

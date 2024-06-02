@@ -71,6 +71,13 @@
                                     <i class="fas fa-user"></i> {{ auth()->user()->name }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    @if (!auth()->user()->hasRole('admin'))
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                            <i class="fas fa-edit"></i> Editar Perfil
+                                        </a>
+                                    </li>
+                                    @endif
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
