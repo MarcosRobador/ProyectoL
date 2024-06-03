@@ -60,6 +60,7 @@ Route::get('/zapatillasUser/{id}', [ZapatillaController::class, 'showUser'])
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add')->middleware('auth');
 Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove')->middleware('auth');
+Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear')->middleware('auth');
 
 Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
