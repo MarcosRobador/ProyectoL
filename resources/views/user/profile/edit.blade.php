@@ -36,7 +36,9 @@
                 <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
             </div>
-            <button type="submit" class="btn btn-success">Actualizar Perfil</button>
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-sync-alt"></i> Actualizar
+            </button>
         </form>
     </div>
 @endsection
